@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# React OAuth2.0 Intuit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a `sample` app bootstrapped with [Create React App](https://github.com/facebook/create-react-app) to show how to login using Intuit's [OAuth2.0 Client library](https://www.npmjs.com/package/intuit-oauth).
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+### Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ⚛️ React
+- [Node.js](http://nodejs.org) 8 LTS and above
+- [Intuit Developer](https://developer.intuit.com) Account
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Via Github Repo (Recommended)
 
-### `npm test`
+```bash
+$ git clone https://github.com/anilkumarbp/oauth2-react-intuit
+$ cd react-oauth2-intuit
+$ yarn install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Configuration
 
-### `npm run build`
+Edit the `.env` file to add your:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **PORT:(optional)** Optional port number for the app to be served
+- **REACT_APP_CLIENT_ID** Enter your client_ID from Intuit Developer Portal
+- **REACT_APP_CLIENT_SECRET** Enter your client_Secret from Intuit Developer Portal
+- **REACT_APP_ENVIRONMENT** =sandbox
+- **REACT_APP_REDIRECT_URI** http://localhost:3000/login (default)
+- **REACT_APP_PROXY_URL** http://localhost:5000/authenticate (default)
+- **REACT_APP_AUTHORIZE_URL** http://localhost:5000/authorizeUrl (default)
+- **REACT_APP_SCOPES** `com.intuit.quickbooks.accounting openid email phone profile` (space
+  seperated : default)
+- **SERVER_PORT** 5000 (default)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Before you start the `app` , enter the `Redirect URI` in your app’s Keys and OAuth section under
+`Development`.
 
-### `npm run eject`
+`Redirect URI` : http://localhost:3000/login
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+$ yarn start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open `http://localhost:3000` and voilà !
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+If you would like to test the app using `https` refer to the section below.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### TLS / SSL (**optional**)
 
-## Learn More
+If you want your enpoints to be exposed over the internet. The easiest way to do that while you are
+still developing your code locally is to use [ngrok](https://ngrok.com/download/).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+ONLY when you have `ngrok` setup follow the steps below :
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Start ngrok on the root path
 
-### Code Splitting
+```bash
+$ cd oauth2-react-intuit
+$ ngrok http 3000 -host-header="localhost:3000"
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. Update Redirect URI in two places :
 
-### Analyzing the Bundle Size
+- .env -> change the `REACT_APP_REDIRECT_URI` to `https forwarding` url from Step 1 above.  
+  (ex: `https://d3d98c1ea00f.ngrok.io/login`)
+- Login to Intuit Developer Portal and update the Redirect URL for your app under `Production` keys
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. Run the App (_in a different terminal from the root path_)
 
-### Making a Progressive Web App
+```bash
+$ cd oauth2-react-intuit
+$ yarn start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Open the URL from ngrok which looks like `https://d3d98c1ea00f.ngrok.io/` and voilà !

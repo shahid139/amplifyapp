@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify9f21a8c3a5de4-staging-114908-authRole",
+      "UnauthRoleArn": "arn:aws:iam::152571909750:role/amplify-amplify9f21a8c3a5de4-staging-114908-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::152571909750:role/amplify-amplify9f21a8c3a5de4-staging-114908-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplify9f21a8c3a5de4-staging-114908-deployment",
+      "UnauthRoleName": "amplify-amplify9f21a8c3a5de4-staging-114908-unauthRole",
+      "StackName": "amplify-amplify9f21a8c3a5de4-staging-114908",
+      "StackId": "arn:aws:cloudformation:us-east-1:152571909750:stack/amplify-amplify9f21a8c3a5de4-staging-114908/24f547d0-7ab0-11ec-bda5-0ededb6c0c71",
+      "AmplifyAppId": "dcm3qk36df9wx"
+    }
+  },
+  "auth": {
+    "lsquickbooksetl": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "output": {
+        "UserPoolId": "us-east-1_RVLF7KkrP",
+        "AppClientIDWeb": "23j36tinkgsrkgqoierdivnoim",
+        "AppClientID": "5d8m61f3ko4fnn5k5m8ukrvrlg",
+        "IdentityPoolId": "us-east-1:8bdc6832-49d8-4529-a971-10521061c64b",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:152571909750:userpool/us-east-1_RVLF7KkrP",
+        "IdentityPoolName": "testAuthIdentityPool__staging",
+        "UserPoolName": "lsquickbooksetl"
+      },
+      "lastPushTimeStamp": "2022-01-21T12:51:16.184Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify9f21a8c3a5de4-staging-114908-deployment/amplify-cfn-templates/auth/lsquickbooksetl-cloudformation-template.json",
+        "logicalId": "authlsquickbooksetl"
+      },
+      "lastPushDirHash": "1upil6q1uEhU1FFzXco6w8hYjbo="
+    }
+  }
+}

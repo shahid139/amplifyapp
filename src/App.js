@@ -1,15 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useReducer } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/App/Home';
+import Login from './components/App/Login';
+import { initialState, reducer } from './store/reducer';
+
+export const AuthContext = createContext();
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello from V2</h1>
-      </header>
-    </div>
+    <AuthContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
+      <Router>
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 
